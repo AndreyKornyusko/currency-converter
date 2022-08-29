@@ -1,0 +1,6 @@
+@mixin font-control($fontSize, $lineHeight, $fontWeight: normal, $fontStyle: normal) {
+  font-style: $fontStyle;
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+};

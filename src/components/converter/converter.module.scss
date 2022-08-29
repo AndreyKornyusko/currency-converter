@@ -1,0 +1,27 @@
+.converter {
+  padding-top: 30px;
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+
+    .input {
+      width: 300px;
+      height: 38px;
+      border: 1px solid #000;
+    }
+
+    .dropdownWrap {
+      position: relative;
+      width: 100px;
+      height: 40px;
+
+      .dropdown {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}

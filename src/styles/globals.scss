@@ -1,0 +1,27 @@
+@import './lib/fonts';
+@import './lib/mixins';
+@import './lib/variables';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: $font;
+  height: 100%;
+  overflow-y: auto;
+  background: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}

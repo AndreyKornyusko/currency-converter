@@ -86,16 +86,18 @@ const Converter = () => {
     if (direction === DirectionEnum.fromV1ToV2) {
       const rate = rate1 / rate2;
       if (value1&&!isNaN(Number(value1) * rate)) {
-        setValue2((Number(Number(value1) * rate).toFixed(2)));
-      } else {
+        setValue2(((Number(value1) * rate).toFixed(2)));
+      }
+       else {
         setValue2('');
       }
     }
     if (direction === DirectionEnum.fromV2ToV1) {
       const rate = rate2 / rate1;
       if (value2&&!isNaN(Number(value2) * rate)) {
-        setValue1((Number(Number(value2) * rate).toFixed(2)));
-      } else {
+        setValue1(((Number(value2) * rate).toFixed(2)));
+      } 
+      else {
         setValue1('');
       }
     }
@@ -110,10 +112,14 @@ const Converter = () => {
       setDirection(DirectionEnum.fromV2ToV1);
   };
   const resetInput1 = (e:React.ChangeEvent<HTMLInputElement>)=> {
-   setValue1('')
+    if(e.target.value==='0'){
+      setValue1('')
+    }
   }
   const resetInput2 = (e:React.ChangeEvent<HTMLInputElement>)=> {
-    setValue1('')
+    if(e.target.value==='0'){
+      setValue2('')
+    }
    }
  
   return (
@@ -126,6 +132,7 @@ const Converter = () => {
           onChange={handleChangeInput1}
           className={styles.input}
           type="number"
+          min="0"
           onFocus={resetInput1}
         />
         <div className={styles.dropdownWrap}>
@@ -145,6 +152,7 @@ const Converter = () => {
           onChange={handleChangeInput2}
           className={styles.input}
           type="number"
+          min="0"
           onFocus={resetInput2}
         />
         <div className={styles.dropdownWrap}>

@@ -24,9 +24,8 @@ const Header = () => {
         }
       })
       .catch((error) => {
-        console.log("Error while refreshing: ", error);
+        console.log(error);
       });
-    // setData(currencyData)
   }, []);
   return (
     <div className={styles.header}>

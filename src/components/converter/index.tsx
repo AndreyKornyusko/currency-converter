@@ -34,8 +34,8 @@ const Converter = () => {
     value: OptionEnum.USD,
     label: OptionEnum.USD,
   });
-  const [value1, setValue1] = useState(0);
-  const [value2, setValue2] = useState(0);
+  const [value1, setValue1] = useState<number|string>('');
+  const [value2, setValue2] = useState<number|string>('');
   const [direction, setDirection] = useState<DirectionEnum>(
     DirectionEnum.fromV1ToV2
   );
@@ -85,35 +85,37 @@ const Converter = () => {
     }
     if (direction === DirectionEnum.fromV1ToV2) {
       const rate = rate1 / rate2;
-      if (!isNaN(value1 * rate)) {
-        setValue2(Number(Number(value1 * rate).toFixed(2)));
+      if (value1&&!isNaN(Number(value1) * rate)) {
+        setValue2((Number(Number(value1) * rate).toFixed(2)));
       } else {
-        setValue2(0);
+        setValue2('');
       }
     }
     if (direction === DirectionEnum.fromV2ToV1) {
       const rate = rate2 / rate1;
-      if (!isNaN(value2 * rate)) {
-        setValue1(Number(Number(value2 * rate).toFixed(2)));
+      if (value2&&!isNaN(Number(value2) * rate)) {
+        setValue1((Number(Number(value2) * rate).toFixed(2)));
       } else {
-        setValue1(0);
+        setValue1('');
       }
     }
   }, [direction, currency1, currency2, value1, value2]);
 
   const handleChangeInput1 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!isNaN(Number(e.target.value))) {
-      setValue1(Number(Number(e.target.value).toFixed(2)));
+      setValue1(e.target.value)
       setDirection(DirectionEnum.fromV1ToV2);
-    }
   };
   const handleChangeInput2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!isNaN(Number(e.target.value))) {
-      setValue2(Number(Number(e.target.value).toFixed(2)));
+      setValue2(e.target.value)
       setDirection(DirectionEnum.fromV2ToV1);
-    }
   };
-
+  const resetInput1 = (e:React.ChangeEvent<HTMLInputElement>)=> {
+   setValue1('')
+  }
+  const resetInput2 = (e:React.ChangeEvent<HTMLInputElement>)=> {
+    setValue1('')
+   }
+ 
   return (
     <div className={styles.converter}>
       <h1 className={styles.title}>Currency converter</h1>
@@ -123,6 +125,8 @@ const Converter = () => {
           value={value1}
           onChange={handleChangeInput1}
           className={styles.input}
+          type="number"
+          onFocus={resetInput1}
         />
         <div className={styles.dropdownWrap}>
           <Select
@@ -140,6 +144,8 @@ const Converter = () => {
           value={value2}
           onChange={handleChangeInput2}
           className={styles.input}
+          type="number"
+          onFocus={resetInput2}
         />
         <div className={styles.dropdownWrap}>
           <Select

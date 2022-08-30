@@ -24,8 +24,8 @@ const Converter = () => {
     { value: OptionEnum.EUR, label: OptionEnum.EUR },
   ];
   const UAHRate = 1;
-  const [EURRate, setEURRate] = useState(0);
-  const [USDRate, setUSDRate] = useState(0);
+  const [EURRate, setEURRate] = useState(1);
+  const [USDRate, setUSDRate] = useState(1);
   const [currency1, setCurrency1] = useState<Option>({
     value: OptionEnum.UAH,
     label: OptionEnum.UAH,
@@ -36,7 +36,8 @@ const Converter = () => {
   });
   const [value1, setValue1] = useState(0);
   const [value2, setValue2] = useState(0);
-
+  console.log("value1", value1);
+  console.log("value2", value2);
   const [direction, setDirection] = useState<DirectionEnum>(
     DirectionEnum.fromV1ToV2
   );
@@ -106,28 +107,25 @@ const Converter = () => {
     if (!isNaN(Number(e.target.value))) {
       setValue1(Number(Number(e.target.value).toFixed(2)));
       setDirection(DirectionEnum.fromV1ToV2);
-    } else {
-      setValue1(0);
     }
   };
   const handleChangeInput2 = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!isNaN(Number(e.target.value))) {
       setValue2(Number(Number(e.target.value).toFixed(2)));
       setDirection(DirectionEnum.fromV2ToV1);
-    } else {
-      setValue2(0);
     }
   };
 
   return (
     <div className={styles.converter}>
+      <h1 className={styles.title}>Currency converter</h1>
+      <div className={styles.converterWrap}>
       <div className={styles.row}>
         <input
           value={value1}
           onChange={handleChangeInput1}
-          name="value1"
-          pattern="^-?[0-9]\d*\.?\d*$"
-          type="number"
+          // type="number"
+          min="0"
           className={styles.input}
         />
         <div className={styles.dropdownWrap}>
@@ -136,7 +134,6 @@ const Converter = () => {
             onChange={(selectedOption) => {
               //@ts-ignore
               setCurrency1(selectedOption);
-              // setDirection(DirectionEnum.fromV1ToV2);
             }}
             value={currency1}
             className={styles.dropdown}
@@ -147,9 +144,8 @@ const Converter = () => {
         <input
           value={value2}
           onChange={handleChangeInput2}
-          name="value2"
-          pattern="^-?[0-9]\d*\.?\d*$"
-          type="number"
+          // type="number"
+          min="0"
           className={styles.input}
         />
         <div className={styles.dropdownWrap}>
@@ -158,12 +154,13 @@ const Converter = () => {
             onChange={(selectedOption) => {
               //@ts-ignore
               setCurrency2(selectedOption);
-              // setDirection(DirectionEnum.fromV2ToV1);
             }}
             value={currency2}
             className={styles.dropdown}
           />
         </div>
+      </div>
+
       </div>
     </div>
   );

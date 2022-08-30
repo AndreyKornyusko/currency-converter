@@ -1,5 +1,44 @@
+@import '../../styles/lib/variables';
+@import '../../styles/lib/mixins';
 .header {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  background-color: #EBF4F8;
+  .table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    width: 320px;
+    min-width: 320px;
+    box-shadow: 0px 16px 56px rgba(44, 39, 56, 0.1);
+
+    .row {
+      font-family: $font;
+      font-size: 22px;
+
+      &:first-child {
+        margin-bottom: 20px;
+      }
+
+      .currency {
+        font-weight: bold;
+      }
+
+      .numbers {
+        font-family: $segment-font;
+        color: forestgreen;
+        font-weight: 700;
+        font-size: 28px;
+      }
+    }
+  }
 }

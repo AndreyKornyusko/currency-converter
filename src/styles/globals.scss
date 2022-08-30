@@ -9,7 +9,7 @@ body {
   font-family: $font;
   height: 100%;
   overflow-y: auto;
-  background: #fff;
+  background: $primary-bg-color;
 }
 
 a {

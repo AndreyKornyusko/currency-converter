@@ -30,16 +30,19 @@ const Header = () => {
   }, []);
   return (
     <div className={styles.header}>
+      <div className={styles.table}>
       {USD && (
-        <div>
-          USD: buy {Number(USD?.buy).toFixed(2)} sale {Number(USD?.sale).toFixed(2)}
+        <div className={styles.row}>
+          <span className={styles.currency}>USD:</span> buy <span className={styles.numbers}>{Number(USD?.buy).toFixed(2)}</span> sale <span className={styles.numbers}>{Number(USD?.sale).toFixed(2)}</span>
         </div>
       )}
       {EUR && (
-        <div>
-          EUR: buy {Number(EUR?.buy).toFixed(2)} sale {Number(EUR?.sale).toFixed(2)}
+        <div className={styles.row}>
+          <span className={styles.currency}>EUR:</span> buy <span className={styles.numbers}>{Number(EUR?.buy).toFixed(2)}</span> sale <span className={styles.numbers}>{Number(EUR?.sale).toFixed(2)}</span>
         </div>
       )}
+
+      </div>
     </div>
   );
 };

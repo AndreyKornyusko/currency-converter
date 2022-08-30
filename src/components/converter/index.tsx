@@ -26,18 +26,16 @@ const Converter = () => {
   const UAHRate = 1;
   const [EURRate, setEURRate] = useState(1);
   const [USDRate, setUSDRate] = useState(1);
-  const [currency1, setCurrency1] = useState<Option>({
+  const [currency1, setCurrency1] = useState<Option|null>({
     value: OptionEnum.UAH,
     label: OptionEnum.UAH,
   });
-  const [currency2, setCurrency2] = useState<Option>({
+  const [currency2, setCurrency2] = useState<Option|null>({
     value: OptionEnum.USD,
     label: OptionEnum.USD,
   });
   const [value1, setValue1] = useState(0);
   const [value2, setValue2] = useState(0);
-  console.log("value1", value1);
-  console.log("value2", value2);
   const [direction, setDirection] = useState<DirectionEnum>(
     DirectionEnum.fromV1ToV2
   );
@@ -66,23 +64,23 @@ const Converter = () => {
   useEffect(() => {
     let rate1 = 1;
     let rate2 = 1;
-    if (currency1.value === OptionEnum.UAH) {
+    if (currency1?.value === OptionEnum.UAH) {
       rate1 = UAHRate;
     }
-    if (currency1.value === OptionEnum.USD) {
+    if (currency1?.value === OptionEnum.USD) {
       rate1 = USDRate;
     }
-    if (currency1.value === OptionEnum.EUR) {
+    if (currency1?.value === OptionEnum.EUR) {
       rate1 = EURRate;
     }
 
-    if (currency2.value === OptionEnum.EUR) {
+    if (currency2?.value === OptionEnum.EUR) {
       rate2 = EURRate;
     }
-    if (currency2.value === OptionEnum.UAH) {
+    if (currency2?.value === OptionEnum.UAH) {
       rate2 = UAHRate;
     }
-    if (currency2.value === OptionEnum.USD) {
+    if (currency2?.value === OptionEnum.USD) {
       rate2 = USDRate;
     }
     if (direction === DirectionEnum.fromV1ToV2) {
@@ -124,15 +122,12 @@ const Converter = () => {
         <input
           value={value1}
           onChange={handleChangeInput1}
-          // type="number"
-          min="0"
           className={styles.input}
         />
         <div className={styles.dropdownWrap}>
           <Select
             options={options}
             onChange={(selectedOption) => {
-              //@ts-ignore
               setCurrency1(selectedOption);
             }}
             value={currency1}
@@ -144,15 +139,12 @@ const Converter = () => {
         <input
           value={value2}
           onChange={handleChangeInput2}
-          // type="number"
-          min="0"
           className={styles.input}
         />
         <div className={styles.dropdownWrap}>
           <Select
             options={options}
             onChange={(selectedOption) => {
-              //@ts-ignore
               setCurrency2(selectedOption);
             }}
             value={currency2}

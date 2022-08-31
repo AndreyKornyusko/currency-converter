@@ -122,9 +122,7 @@ const Converter = () => {
             currency={currency2}
           />
         </div>
-      ) : (
-        <h3 className={styles.error}>Sorry, can't get data from server. Please reload the page</h3>
-      )}
+      ) : null}
     </div>
   );
 };

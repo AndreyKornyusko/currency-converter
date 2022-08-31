@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./converter.module.scss";
-import Select from "react-select";
 import { useGetCurrencies } from "../../hooks/useGetCurrencies";
 import { OptionEnum, Option } from "../../interfaces/data.interface";
 import ConvertItem from "./convertItem/convertItem";
@@ -124,7 +123,7 @@ const Converter = () => {
           />
         </div>
       ) : (
-        <h3 className={styles.error}>Sorry, can't get data from server</h3>
+        <h3 className={styles.error}>Sorry, can't get data from server. Please reload the page</h3>
       )}
     </div>
   );

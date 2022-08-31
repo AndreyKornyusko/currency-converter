@@ -7,8 +7,8 @@ export enum BaseCCYEnum {
 }
 
 export interface CurrencyItem {
-    ccy: CCYEnum,
-    base_ccy: BaseCCYEnum,
+    ccy: CCYEnum | string,
+    base_ccy: BaseCCYEnum | string,
     buy: number,
     sale: number
 }
